@@ -1,1 +1,33 @@
-# my_project
+#continuous integration
+#python code 
+def add(a, b):
+    return a + b
+
+def test_add():
+    assert add(2, 3) == 5
+
+test_add()
+print("Test Passed")
+
+
+#yml code 
+
+name: Python Test
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Run test
+        run: python main.py
